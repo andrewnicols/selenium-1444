@@ -24,11 +24,11 @@ const browsers = process.env.BROWSERS.split(' ');
 const seleniums = [
     {
         name: '3.141.59',
-        url: 'http://localhost:5444/wd/hub',
+        url: process.env.SEL3URL,
     },
     {
         name: '4.1.1',
-        url: 'http://localhost:4444/',
+        url: process.env.SEL4URL,
     },
 ];
 

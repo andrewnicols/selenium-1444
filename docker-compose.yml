@@ -1,0 +1,23 @@
+services:
+  runner:
+    image: node:17
+    volumes:
+      - type: bind
+        source: ./
+        target: /opt/app
+    depends_on:
+      - selenium3
+      - selenium4
+    command: "tail -f /dev/null"
+    working_dir: /opt/app
+    environment:
+      SEL3URL: "http://selenium3:4444/wd/hub"
+      SEL4URL: "http://selenium4:4444/wd/hub"
+  selenium3:
+    image: selenium/standalone-chrome:3.141.59
+    shm_size: 2gb
+  selenium4:
+    image: selenium/standalone-chrome:4.1
+    shm_size: 2gb
+    environment:
+      SE_OPTS: "--log-level FINE --session-retry-interval 1"
